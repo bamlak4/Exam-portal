@@ -3,7 +3,8 @@
 
 ## Team Members
 - Aneni Kidanu –  0177/16
-- Azaria Abnet - 0211/16  
+- Azaria Abnet - 0211/16
+- Azeb Yirga  - 0215/16 
 - Bamlak Chernet –  0220/16  
 - Banchiamelak Golla –  0221/16
 - Arsema Menberu - 0190/16
