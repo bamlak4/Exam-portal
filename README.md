@@ -7,10 +7,11 @@
 - Banchiamelak Golla –  0221/16  
 
 ## Project Description
-This project will be a **Login and Registration Form** web application.  
-Users will be able to **register** with their details and **log in** securely.  
 
-We plan to implement **input validation, responsive design, and interactivity** using HTML, CSS, and JavaScript.  
-The project is structured to be expandable so that by the end of the course, we can connect it to a backend and database for full functionality.  
+The Online Exam portal is a web-based platform that makes giving and taking exams easier, faster, and more reliable. Instead of using traditional paper tests, this system lets students take their exams online from anywhere. Teachers can create and manage exams in just a few clicks.
 
-Each team member will contribute to different parts of the project, and updates will be added to the repository throughout the semester.
+The platform automatically checks answers for objective questions, shows instant results, and tracks each student’s performance over time. This saves teachers hours of manual grading and ensures fairness in evaluation.
+
+For students, it offers a simple, secure, and stress-free way to take exams. With features like a countdown timer and automatic submission, students can focus on their answers without worrying about time management or technical problems.
+
+Overall, this project aims to bring convenience and efficiency to both teachers and learners. It seeks to modernize the exam process by combining technology with education. This creates a smoother, smarter, and more accessible experience for everyone involved.
