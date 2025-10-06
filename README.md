@@ -3,11 +3,12 @@
 
 ## Team Members
 - Aneni Kidanu –  0177/16
+- Arsema Menberu - 0190/16
 - Azaria Abnet - 0211/16
 - Azeb Yirga  - 0215/16 
 - Bamlak Chernet –  0220/16  
 - Banchiamelak Golla –  0221/16
-- Arsema Menberu - 0190/16
+
 ## Problem Statement
 
 Teachers often spend a lot of time preparing and grading paper-based exams, while students face delays in receiving results and limited flexibility in taking tests. This manual process is slow, stressful, and prone to errors. The Online Examination System aims to solve these issues by providing a web-based platform where teachers can easily create and manage exams, and students can take them online with instant, fair, and accurate results.
@@ -21,4 +22,4 @@ The platform automatically checks answers for objective questions, shows instant
 
 For students, it offers a simple, secure, and stress-free way to take exams. With features like a countdown timer and automatic submission, students can focus on their answers without worrying about time management or technical problems.
 
-Overall, this project aims to bring convenience and efficiency to both teachers and learners. It seeks to modernize the exam process by combining technology with education. This creates a smoother, smarter, and more accessible experience for everyone involved.
+Overall, this project aims to bring convenience and efficiency to both teachers and learners. It seeks to modernize the exam process by combining technology with education. This creates a smoother,smarter and more accessible experience for everyone involved.
