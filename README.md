@@ -18,6 +18,17 @@ Teachers often spend a lot of time preparing and grading paper-based exams, whil
 
 The Online Exam portal is a web-based platform that makes giving and taking exams easier, faster, and more reliable. Instead of using traditional paper tests, this system lets students take their exams online from anywhere. Teachers can create and manage exams in just a few clicks.
 
+
+## Technologies Used
+
+HTML: Used to build the structure and layout of all web pages, including exam forms, login pages, and dashboards.
+
+CSS: Handles the visual design and styling of the platform, ensuring a clean, modern, and responsive user interface that works well on different devices.
+
+JavaScript: Powers the interactive features of the system, such as form validation, timer functionality, question navigation, and automatic result display. It also manages data handling and basic backend logic to make the platform dynamic and responsive.
+
+Together, these technologies make the platform lightweight, fast, and easy to use — without the need for complex backend frameworks or databases. 
+
 The platform automatically checks answers for objective questions, shows instant results, and tracks each student’s performance over time. This saves teachers hours of manual grading and ensures fairness in evaluation.
 
 For students, it offers a simple, secure, and stress-free way to take exams. With features like a countdown timer and automatic submission, students can focus on their answers without worrying about time management or technical problems.
