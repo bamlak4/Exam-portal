@@ -1,1 +1,12 @@
-
+ body {
+      background: #cec3c3;
+      margin: 0;
+      padding: 0;
+    }
+ .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px 30px;
+      position: relative;
+    }
