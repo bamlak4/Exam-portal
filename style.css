@@ -64,4 +64,30 @@ button:hover {
    padding:10px;
    border-radius:8px
   }
-
+<!--New commit 5-->
+.question {
+  margin-bottom:15px;
+}
+.correct {
+  color:lightgreen; 
+  font-weight:bold;
+}
+.wrong {
+  color:red; 
+  font-weight:bold;
+}
+#timer {
+  text-align:center; 
+  color:lightgreen; 
+  font-size:20px;
+}
+.backBtn {
+  margin-top:10px; 
+  background:black; 
+  color:purple;
+}
+.backBtn:hover {
+  background:purple; 
+  color:white;
+}
+<!--New commit 5-->
