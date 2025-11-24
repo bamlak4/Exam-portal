@@ -1,12 +1,35 @@
- body {
-      background: #cec3c3;
-      margin: 0;
-      padding: 0;
-    }
- .container {
-      max-width: 900px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 20px 30px;
-      position: relative;
-    }
+
+// css number 3
+body {
+  font-family: Arial; 
+  background:#1e1e2f; 
+  color:white; 
+  margin:0; 
+  padding:0;
+}
+.container {
+  max-width:900px; 
+  margin:auto; 
+  padding:20px;
+}
+h2, h3 {
+  text-align:center; 
+  color:purple;
+}
+input, select, button, textarea {
+  padding:8px; 
+ margin:5px 0; 
+  width:100%; 
+  box-sizing:border-box; 
+  border-radius:5px;
+}
+button {
+  cursor:pointer; 
+ background: purple; 
+  color:white; 
+  border:none; 
+  font-weight:bold;
+}
+button:hover {
+  background: black;
+}
