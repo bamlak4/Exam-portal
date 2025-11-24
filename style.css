@@ -58,3 +58,10 @@ button:hover {
 .menu ui:hover{
     background:purple;
    }
+.content {
+   width:70%;
+   background:#2a2a40;
+   padding:10px;
+   border-radius:8px
+  }
+
