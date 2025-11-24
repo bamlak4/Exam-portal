@@ -33,3 +33,28 @@ button {
 button:hover {
   background: black;
 }
+<!--New commit 4-->
+.dashboard {
+      display:flex;
+      justify-content:space-between;
+     }
+.menu {
+     width:25%;
+     background:#2a2a40;
+     padding:10px;
+     border-radius:8px;
+    }
+.menu ul {
+     list-style:none;
+     padding:0;
+   }
+.menu ui {
+     padding:8px;
+     background:#3b3b60;
+     margin-bottom:5px;
+     border-radius:4px;
+     cursor:pointer;
+    }
+.menu ui:hover{
+    background:purple;
+   }
