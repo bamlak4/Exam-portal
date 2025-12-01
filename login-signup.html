@@ -36,7 +36,6 @@
     margin: 12px 0 6px;
   }
   
-  <!--person c-->
   input, select {
     width: 100%;
     padding: 10px;
@@ -68,4 +67,47 @@
 </style>
 </head>
 <body>
-<!--person c-->
+
+<div class="container hidden" id="signupPage">
+  <h2>Sign Up</h2>
+
+  <label for="signupRole">Register as</label>
+  <select id="signupRole">
+    <option value="student">Student</option>
+    <option value="teacher">Teacher</option>
+  </select>
+
+  <label>Full Name</label>
+  <input type="text" placeholder="Enter full name">
+
+  <label>Email</label>
+  <input type="email" placeholder="Enter email">
+
+  <label>Password</label>
+  <input type="password" placeholder="Create password">
+
+  <label>Confirm Password</label>
+  <input type="password" placeholder="Confirm password">
+
+  <button class="btn">Sign Up</button>
+
+  <div class="toggle-link">
+    Already have an account? <a href="#" onclick="showLogin()">Login</a>
+  </div>
+</div>
+
+<script>
+  function showSignup() {
+    document.getElementById('loginPage').classList.add('hidden');
+    document.getElementById('signupPage').classList.remove('hidden');
+  }
+
+  function showLogin() {
+    document.getElementById('signupPage').classList.add('hidden');
+    document.getElementById('loginPage').classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
+
