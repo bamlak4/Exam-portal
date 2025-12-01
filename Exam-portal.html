@@ -11,34 +11,30 @@
     <form id="quizForm">
       
       <div id="timer"></div>
-      <!--new commit-->
-      
-      <div id="loginpage">
-        <h2>welcome to examportal</h2>
-        <label>Email:</label><br>
-        <input type="email" id="email"><br>
-      <label>password:</label><br>
-        <input type="password" id="password"><br>
-        <select id="role">
-          <option value="student">student</option>
-          <option value="teacher">teacher</option>
-          <option value="admin">admin</option>
-        </select><br><br>
-        <button>login</button>
-        <p id="login error" style="color:red;"></p>
-      </div>
-      <!--new comm -->
-      <!--new com 2-->
-      .<div id="dashboard" style="display:none;">
-  <h2 id="welcomeMsg"></h2>
-  <div class="dashboard">
-    <div class="menu" id="menu"></div>
-    <div class="content" id="content"></div>
-  </div>
-</div>
-       <!--new com 2-->
       <!-- Question container -->
-      <div id="questionBox"></div>
+      <div id="questionBox">
+        <h2>Question 1</h2>
+        <p>A cylindrical water tank has a radius of 3 m and height of 7 m. What is its volume?</p>
+        <div class="options">
+        `   <label>
+              <input type="radio" name="q1" value="198">
+              198 m³
+            </label>
+            <label>
+              <input type="radio" name="q1" value="197">
+              197 m³
+            </label>
+            <label>
+              <input type="radio" name="q1" value="200">
+              200 m³
+            </label>
+            <label>
+              <input type="radio" name="q1" value="210">
+              210 m³
+            </label>
+          `
+        </div>
+      </div>
       <!-- Navigation buttons -->
       <div class="btns">
         <button type="button" id="ultraprevBtn" class="btn ultbtn">|&lt;</button>

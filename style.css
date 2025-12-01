@@ -1,93 +1,157 @@
+:root {
+  --font:Arial, sans-serif;
+  --container-color: #fff;
+--body-bg: #d9d9d9;
+--footer-bg: #2d3748;
+--btn-bg: #e7dedee1;
+--btn-color: #2d3748;
+}
 
-// css number 3
-body {
-  font-family: Arial; 
-  background:#1e1e2f; 
-  color:white; 
-  margin:0; 
-  padding:0;
-}
-.container {
-  max-width:900px; 
-  margin:auto; 
-  padding:20px;
-}
-h2, h3 {
-  text-align:center; 
-  color:purple;
-}
-input, select, button, textarea {
-  padding:8px; 
- margin:5px 0; 
-  width:100%; 
-  box-sizing:border-box; 
-  border-radius:5px;
-}
-button {
-  cursor:pointer; 
- background: purple; 
-  color:white; 
-  border:none; 
-  font-weight:bold;
-}
-button:hover {
-  background: black;
-}
-<!--New commit 4-->
-.dashboard {
-      display:flex;
-      justify-content:space-between;
-     }
-.menu {
-     width:25%;
-     background:#2a2a40;
-     padding:10px;
-     border-radius:8px;
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font);
     }
-.menu ul {
-     list-style:none;
-     padding:0;
-   }
-.menu ui {
-     padding:8px;
-     background:#3b3b60;
-     margin-bottom:5px;
-     border-radius:4px;
-     cursor:pointer;
+ body {
+      background: var(--body-bg);
+      margin: 0;
+      padding: 0;
     }
-.menu ui:hover{
-    background:purple;
-   }
-.content {
-   width:70%;
-   background:#2a2a40;
-   padding:10px;
-   border-radius:8px
-  }
-<!--New commit 5-->
-.question {
-  margin-bottom:15px;
+
+    header button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      transition: 0.1s;
+      font-weight: bold;
+    }
+
+    header button:hover {
+      background: var(--btn-color);
+      color: var(--btn-bg);
+    }
+
+         .hero h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: auto;
+      color: #e2e8f0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: var(--container-color);
+      padding: 20px 30px;
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .question {
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .question:last-child {
+      border-bottom: none;
+    }
+
+    .options {
+      margin-top: 10px;
+    }
+
+    .options label {
+      display: block;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .options label:hover {
+      background: #e0e0e0;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    .btns {
+  display: flex;
 }
-.correct {
-  color:lightgreen; 
-  font-weight:bold;
+.ultbtn {
+  width: 20px;
+  padding: 20px;
 }
-.wrong {
-  color:red; 
-  font-weight:bold;
+    .btn {
+      flex: 1;
+ 
+      background: var(--btn-bg);
+      color:var(--btn-color);
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background:var(--btn-color);
+      color: var(--btn-bg);
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    .timer{
+      align-items: Right;
+      align-content: right;
+      }
+    
+#timer{
+  text-align: center;
+  display: block;
+  position: absolute;
+  font-size: 36px;
+  top: 1;
+  right: 40px;
+  width: clamp(40px, 10vw,100px);
+  height: clamp(40px, 14vh,52px);
+  background-color: #999999;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
 }
-#timer {
-  text-align:center; 
-  color:lightgreen; 
-  font-size:20px;
-}
-.backBtn {
-  margin-top:10px; 
-  background:black; 
-  color:purple;
-}
-.backBtn:hover {
-  background:purple; 
-  color:white;
-}
-<!--New commit 5-->
+
+footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: var(--footer-bg);
+    }
