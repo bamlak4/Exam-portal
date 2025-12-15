@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(45, 55, 72, 0.9);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logout-btn {
+            padding: 10px 20px;
+            background: #e7dede;
+            color: #2d3748;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .logout-btn:hover {
+            background: #2d3748;
+            color: #e7dede;
+        }
+        
+        .dashboard {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+        }
+        
+        .dashboard h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+        
+        .teacher-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .action-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .action-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .action-card h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .action-card p {
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            background: #4a4949;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .action-btn:hover {
+            background: #000;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2d3748;
+            margin-top: 60px;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            color: #333;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .close-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .quiz-question {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .remove-question {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .add-question-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .save-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .student-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .student-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f5f5f5;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .results-table th,
+        .results-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            color: #333;
+        }
+        
+        .results-table th {
+            background: #4a5568;
+            color: white;
+        }
+        
+        .results-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>👨‍🏫 Teacher Dashboard</h1>
+            <div class="user-info">
+                <span id="teacherName">Welcome, Teacher</span>
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="dashboard">
+        <h1>Welcome to Teacher Portal</h1>
+        
+        <div class="teacher-actions">
+            <div class="action-card">
+                <h3>📝 Create New Quiz</h3>
+                <p>Design a new quiz with multiple choice questions for your students.</p>
+                <button class="action-btn" onclick="showCreateQuiz()">Create Quiz</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>📊 View Results</h3>
+                <p>Check student performance and analyze quiz results.</p>
+                <button class="action-btn" onclick="showResults()">View Results</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>👥 Manage Students</h3>
+                <p>View and manage student accounts and progress.</p>
+                <button class="action-btn" onclick="showStudents()">Manage Students</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>⚙️ Quiz Settings</h3>
+                <p>Configure quiz timing, attempts, and other settings.</p>
+                <button class="action-btn" onclick="showSettings()">Settings</button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Create Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Quiz</h2>
+                <button class="close-btn" onclick="closeModal('quizModal')">✕ Close</button>
+            </div>
+            <div class="form-group">
+                <label for="quizTitle">Quiz Title:</label>
+                <input type="text" id="quizTitle" placeholder="Enter quiz title">
+            </div>
+            <div class="form-group">
+                <label for="quizDescription">Description:</label>
+                <textarea id="quizDescription" placeholder="Enter quiz description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="quizTime">Time Limit (minutes):</label>
+                <input type="number" id="quizTime" value="10" min="1" max="120">
+            </div>
+            
+            <h3>Questions</h3>
+            <div id="questionsContainer">
+                <!-- Questions will be added here -->
+            </div>
+            
+            <button class="add-question-btn" onclick="addQuestion()">➕ Add Question</button>
+            <br>
+            <button class="save-btn" onclick="saveQuiz()">💾 Save Quiz</button>
+        </div>
+    </div>
+    
+    <!-- Results Modal -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Student Results</h2>
+                <button class="close-btn" onclick="closeModal('resultsModal')">✕ Close</button>
+            </div>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Quiz Title</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTable">
+                    <!-- Results will be populated here -->
+                </tbody>
+            </table>
+            <div style="margin-top: 20px;">
+                <h3>Statistics</h3>
+                <p id="statsText">Loading statistics...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Students Modal -->
+    <div id="studentsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manage Students</h2>
+                <button class="close-btn" onclick="closeModal('studentsModal')">✕ Close</button>
+            </div>
+            <div class="form-group">
+                <label>Add New Student:</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="newStudentName" placeholder="Student name" style="flex: 1;">
+                    <input type="email" id="newStudentEmail" placeholder="Student email" style="flex: 1;">
+                    <button class="action-btn" onclick="addStudent()">Add</button>
+                </div>
+            </div>
+            <h3>Current Students</h3>
+            <div class="student-list" id="studentList">
+                <!-- Students will be listed here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Quiz Settings</h2>
+                <button class="close-btn" onclick="closeModal('settingsModal')">✕ Close</button>
+            </div>
+            <div class="form-group">
+                <label for="defaultTime">Default Time Limit (minutes):</label>
+                <input type="number" id="defaultTime" value="10" min="1" max="120">
+            </div>
+            <div class="form-group">
+                <label for="maxAttempts">Maximum Attempts:</label>
+                <select id="maxAttempts">
+                    <option value="1">1 attempt</option>
+                    <option value="2">2 attempts</option>
+                    <option value="3">3 attempts</option>
+                    <option value="999">Unlimited</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="passingScore">Passing Score (%):</label>
+                <input type="number" id="passingScore" value="60" min="0" max="100">
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="randomizeQuestions"> Randomize Questions
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="showResults"> Show Results Immediately
+                </label>
+            </div>
+            <button class="save-btn" onclick="saveSettings()">💾 Save Settings</button>
+        </div>
+    </div>
+    
+    <footer>
+        © 2025 Exam Portal | Academic Year 2018 E.C | Prepared by Group 7
+    </footer>
+    
+    <script>
+        // Teacher data storage
+        let teacherQuizzes = JSON.parse(localStorage.getItem('teacherQuizzes')) || [];
+        let teacherStudents = JSON.parse(localStorage.getItem('teacherStudents')) || [];
+        let teacherResults = JSON.parse(localStorage.getItem('teacherResults')) || [];
+        let teacherSettings = JSON.parse(localStorage.getItem('teacherSettings')) || {
+            defaultTime: 10,
+            maxAttempts: 1,
+            passingScore: 60,
+            randomizeQuestions: false,
+            showResults: true
+        };
+        
+        // Display teacher name
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userRole = localStorage.getItem('userRole');
+            
+            // Check if user is teacher and logged in
+            if (!isLoggedIn || isLoggedIn !== 'true' || userRole !== 'teacher') {
+                alert("Access denied! Teacher login required.");
+                window.location.href = "login.html";
+                return;
+            }
+            
+            // Display teacher name
+            const userData = localStorage.getItem('userData');
+            if (userData) {
+                try {
+                    const user = JSON.parse(userData);
+                    document.getElementById('teacherName').textContent = `Welcome, ${user.name}`;
+                } catch (e) {
+                    console.log("Could not parse user data");
+                }
+            }
+            
+            // Load default data if empty
+            if (teacherStudents.length === 0) {
+                teacherStudents = [
+                    { id: 1, name: "John Doe", email: "john@student.com" },
+                    { id: 2, name: "Sarah Smith", email: "sarah@student.com" },
+                    { id: 3, name: "Mike Johnson", email: "mike@student.com" }
+                ];
+                localStorage.setItem('teacherStudents', JSON.stringify(teacherStudents));
+            }
+            
+            if (teacherResults.length === 0) {
+                teacherResults = [
+                    { studentName: "John Doe", quizTitle: "Math Quiz", score: "85%", date: "2025-01-15", status: "Passed" },
+                    { studentName: "Sarah Smith", quizTitle: "Math Quiz", score: "92%", date: "2025-01-15", status: "Passed" },
+                    { studentName: "Mike Johnson", quizTitle: "Math Quiz", score: "45%", date: "2025-01-15", status: "Failed" }
+                ];
+                localStorage.setItem('teacherResults', JSON.stringify(teacherResults));
+            }
+            
+            // Load settings
+            loadSettings();
+        };
+        
+        // Logout function
+        function logout() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+        
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // ============ CREATE QUIZ FUNCTIONALITY ============
+        let questionCounter = 0;
+        
+        function showCreateQuiz() {
+            showModal('quizModal');
+            document.getElementById('questionsContainer').innerHTML = '';
+            questionCounter = 0;
+            addQuestion(); // Add first question by default
+        }
+        
+        function addQuestion() {
+            questionCounter++;
+            const questionHTML = `
+                <div class="quiz-question" id="question${questionCounter}">
+                    <div class="question-header">
+                        <h4>Question ${questionCounter}</h4>
+                        <button class="remove-question" onclick="removeQuestion(${questionCounter})">🗑 Remove</button>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="question-text" placeholder="Enter question text">
+                    </div>
+                    <div class="form-group">
+                        <label>Options (mark correct answer with ✓):</label>
+                        <input type="text" class="option" placeholder="Option A">
+                        <input type="text" class="option" placeholder="Option B">
+                        <input type="text" class="option" placeholder="Option C">
+                        <input type="text" class="option" placeholder="Option D">
+                    </div>
+                </div>
+            `;
+            document.getElementById('questionsContainer').innerHTML += questionHTML;
+        }
+        
+        function removeQuestion(questionId) {
+            const questionElement = document.getElementById(`question${questionId}`);
+            if (questionElement) {
+                questionElement.remove();
+                // Renumber remaining questions
+                const questions = document.querySelectorAll('.quiz-question');
+                questions.forEach((q, index) => {
+                    q.querySelector('h4').textContent = `Question ${index + 1}`;
+                    q.id = `question${index + 1}`;
+                });
+                questionCounter = questions.length;
+            }
+        }
+        
+        function saveQuiz() {
+            const title = document.getElementById('quizTitle').value;
+            const description = document.getElementById('quizDescription').value;
+            const timeLimit = document.getElementById('quizTime').value;
+            
+            if (!title.trim()) {
+                alert("Please enter a quiz title");
+                return;
+            }
+            
+            const questions = [];
+            const questionElements = document.querySelectorAll('.quiz-question');
+            
+            questionElements.forEach((q, index) => {
+                const questionText = q.querySelector('.question-text').value;
+                const options = Array.from(q.querySelectorAll('.option')).map(input => input.value);
+                
+                if (questionText.trim() && options.some(opt => opt.trim())) {
+                    questions.push({
+                        text: questionText,
+                        options: options,
+                        answer: options[0] // First option is marked as correct (simplified)
+                    });
+                }
+            });
+            
+            if (questions.length === 0) {
+                alert("Please add at least one question");
+                return;
+            }
+            
+            const newQuiz = {
+                id: Date.now(),
+                title: title,
+                description: description,
+                timeLimit: parseInt(timeLimit),
+                questions: questions,
+                createdDate: new Date().toISOString().split('T')[0],
+                studentCount: 0
+            };
+            
+            teacherQuizzes.push(newQuiz);
+            localStorage.setItem('teacherQuizzes', JSON.stringify(teacherQuizzes));
+            
+            alert(`Quiz "${title}" created successfully with ${questions.length} questions!`);
+            closeModal('quizModal');
+            
+            // Reset form
+            document.getElementById('quizTitle').value = '';
+            document.getElementById('quizDescription').value = '';
+            document.getElementById('quizTime').value = '10';
+        }
+        
+        // ============ VIEW RESULTS FUNCTIONALITY ============
+        function showResults() {
+            showModal('resultsModal');
+            
+            // Populate results table
+            const resultsTable = document.getElementById('resultsTable');
+            resultsTable.innerHTML = '';
+            
+            teacherResults.forEach(result => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${result.studentName}</td>
+                    <td>${result.quizTitle}</td>
+                    <td>${result.score}</td>
+                    <td>${result.date}</td>
+                    <td><span style="color: ${result.status === 'Passed' ? 'green' : 'red'}">${result.status}</span></td>
+                `;
+                resultsTable.appendChild(row);
+            });
+            
+            // Calculate statistics
+            const totalStudents = teacherStudents.length;
+            const totalQuizzes = teacherQuizzes.length;
+            const passedStudents = teacherResults.filter(r => r.status === 'Passed').length;
+            const averageScore = teacherResults.length > 0 ? 
+                teacherResults.reduce((sum, r) => sum + parseInt(r.score), 0) / teacherResults.length : 0;
+            
+            document.getElementById('statsText').innerHTML = `
+                <strong>Total Students:</strong> ${totalStudents}<br>
+                <strong>Total Quizzes:</strong> ${totalQuizzes}<br>
+                <strong>Pass Rate:</strong> ${((passedStudents / teacherResults.length) * 100 || 0).toFixed(1)}%<br>
+                <strong>Average Score:</strong> ${averageScore.toFixed(1)}%<br>
+                <strong>Total Attempts:</strong> ${teacherResults.length}
+            `;
+        }
+        
+        // ============ MANAGE STUDENTS FUNCTIONALITY ============
+        function showStudents() {
+            showModal('studentsModal');
+            updateStudentList();
+        }
+        
+        function updateStudentList() {
+            const studentList = document.getElementById('studentList');
+            studentList.innerHTML = '';
+            
+            teacherStudents.forEach(student => {
+                const studentItem = document.createElement('div');
+                studentItem.className = 'student-item';
+                studentItem.innerHTML = `
+                    <div>
+                        <strong>${student.name}</strong><br>
+                        <small>${student.email}</small>
+                    </div>
+                    <button class="remove-question" onclick="removeStudent(${student.id})">Remove</button>
+                `;
+                studentList.appendChild(studentItem);
+            });
+        }
+        
+        function addStudent() {
+            const name = document.getElementById('newStudentName').value;
+            const email = document.getElementById('newStudentEmail').value;
+            
+            if (!name.trim() || !email.trim()) {
+                alert("Please enter both name and email");
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                alert("Please enter a valid email address");
+                return;
+            }
+            
+            const newStudent = {
+                id: Date.now(),
+                name: name,
+                email: email
+            };
+            
+            teacherStudents.push(newStudent);
+            localStorage.setItem('teacherStudents', JSON.stringify(teacherStudents));
+            
+            document.getElementById('newStudentName').value = '';
+            document.getElementById('newStudentEmail').value = '';
+            
+            updateStudentList();
+            alert(`Student "${name}" added successfully!`);
+        }
+        
+        function removeStudent(studentId) {
+            if (confirm("Are you sure you want to remove this student?")) {
+                teacherStudents = teacherStudents.filter(s => s.id !== studentId);
+                localStorage.setItem('teacherStudents', JSON.stringify(teacherStudents));
+                updateStudentList();
+                alert("Student removed successfully!");
+            }
+        }
+        
+        // ============ SETTINGS FUNCTIONALITY ============
+        function showSettings() {
+            showModal('settingsModal');
+            document.getElementById('defaultTime').value = teacherSettings.defaultTime;
+            document.getElementById('maxAttempts').value = teacherSettings.maxAttempts;
+            document.getElementById('passingScore').value = teacherSettings.passingScore;
+            document.getElementById('randomizeQuestions').checked = teacherSettings.randomizeQuestions;
+            document.getElementById('showResults').checked = teacherSettings.showResults;
+        }
+        
+        function loadSettings() {
+            if (Object.keys(teacherSettings).length > 0) {
+                document.getElementById('defaultTime').value = teacherSettings.defaultTime;
+                document.getElementById('maxAttempts').value = teacherSettings.maxAttempts;
+                document.getElementById('passingScore').value = teacherSettings.passingScore;
+                document.getElementById('randomizeQuestions').checked = teacherSettings.randomizeQuestions;
+                document.getElementById('showResults').checked = teacherSettings.showResults;
+            }
+        }
+        
+        function saveSettings() {
+            teacherSettings = {
+                defaultTime: parseInt(document.getElementById('defaultTime').value),
+                maxAttempts: parseInt(document.getElementById('maxAttempts').value),
+                passingScore: parseInt(document.getElementById('passingScore').value),
+                randomizeQuestions: document.getElementById('randomizeQuestions').checked,
+                showResults: document.getElementById('showResults').checked
+            };
+            
+            localStorage.setItem('teacherSettings', JSON.stringify(teacherSettings));
+            alert("Settings saved successfully!");
+            closeModal('settingsModal');
+        }
+    </script>
+</body>
+</html>
