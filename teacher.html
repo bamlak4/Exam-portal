@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/teacher.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>👨‍🏫 Teacher Dashboard</h1>
+            <div class="user-info">
+                <span id="teacherName">Welcome, Teacher</span>
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="dashboard">
+        <h1>Welcome to Teacher Portal</h1>
+        
+        <div class="teacher-actions">
+            <div class="action-card">
+                <h3>📝 Create New Quiz</h3>
+                <p>Design a new quiz with multiple choice questions for your students.</p>
+                <button class="action-btn" onclick="showCreateQuiz()">Create Quiz</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>📊 View Results</h3>
+                <p>Check student performance and analyze quiz results.</p>
+                <button class="action-btn" onclick="showResults()">View Results</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>👥 Manage Students</h3>
+                <p>View and manage student accounts and progress.</p>
+                <button class="action-btn" onclick="showStudents()">Manage Students</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>⚙️ Quiz Settings</h3>
+                <p>Configure quiz timing, attempts, and other settings.</p>
+                <button class="action-btn" onclick="showSettings()">Settings</button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Create Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Quiz</h2>
+                <button class="close-btn" onclick="closeModal('quizModal')">✕ Close</button>
+            </div>
+            <div class="form-group">
+                <label for="quizTitle">Quiz Title:</label>
+                <input type="text" id="quizTitle" placeholder="Enter quiz title">
+            </div>
+            <div class="form-group">
+                <label for="quizDescription">Description:</label>
+                <textarea id="quizDescription" placeholder="Enter quiz description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="quizTime">Time Limit (minutes):</label>
+                <input type="number" id="quizTime" value="10" min="1" max="120">
+            </div>
+            
+            <h3>Questions</h3>
+            <div id="questionsContainer">
+                <!-- Questions will be added here -->
+            </div>
+            
+            <button class="add-question-btn" onclick="addQuestion()">➕ Add Question</button>
+            <br>
+            <button class="save-btn" onclick="saveQuiz()">💾 Save Quiz</button>
+        </div>
+    </div>
+    
+    <!-- Results Modal -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Student Results</h2>
+                <button class="close-btn" onclick="closeModal('resultsModal')">✕ Close</button>
+            </div>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Quiz Title</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTable">
+                    <!-- Results will be populated here -->
+                </tbody>
+            </table>
+            <div style="margin-top: 20px;">
+                <h3>Statistics</h3>
+                <p id="statsText">Loading statistics...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Students Modal -->
+    <div id="studentsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manage Students</h2>
+                <button class="close-btn" onclick="closeModal('studentsModal')">✕ Close</button>
+            </div>
+            <div class="form-group">
+                <label>Add New Student:</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="newStudentName" placeholder="Student name" style="flex: 1;">
+                    <input type="email" id="newStudentEmail" placeholder="Student email" style="flex: 1;">
+                    <button class="action-btn" onclick="addStudent()">Add</button>
+                </div>
+            </div>
+            <h3>Current Students</h3>
+            <div class="student-list" id="studentList">
+                <!-- Students will be listed here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Quiz Settings</h2>
+                <button class="close-btn" onclick="closeModal('settingsModal')">✕ Close</button>
+            </div>
+            <div class="form-group">
+                <label for="defaultTime">Default Time Limit (minutes):</label>
+                <input type="number" id="defaultTime" value="10" min="1" max="120">
+            </div>
+            <div class="form-group">
+                <label for="maxAttempts">Maximum Attempts:</label>
+                <select id="maxAttempts">
+                    <option value="1">1 attempt</option>
+                    <option value="2">2 attempts</option>
+                    <option value="3">3 attempts</option>
+                    <option value="999">Unlimited</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="passingScore">Passing Score (%):</label>
+                <input type="number" id="passingScore" value="60" min="0" max="100">
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="randomizeQuestions"> Randomize Questions
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="showResults"> Show Results Immediately
+                </label>
+            </div>
+            <button class="save-btn" onclick="saveSettings()">💾 Save Settings</button>
+        </div>
+    </div>
+    
+    <footer>
+        © 2025 Exam Portal | Academic Year 2018 E.C | Prepared by Group 7
+    </footer>
+    
+    <script src="teacher.js"></script>
+</body>
+</html>
