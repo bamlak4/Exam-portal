@@ -2,54 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Step-by-Step Quiz</title>
- <link rel="stylesheet" href="style.css">
+  <title>Dashboard | Exam Portal</title>
+  <link rel="stylesheet" href="css/styleExam.css">
 </head>
 <body>
-  <div class="container">
-    <form id="quizForm">
-      
-      <div id="timer"></div>
-      <!--new commit-->
-      
-      <div id="loginpage">
-        <h2>welcome to examportal</h2>
-        <label>Email:</label><br>
-        <input type="email" id="email"><br>
-      <label>password:</label><br>
-        <input type="password" id="password"><br>
-        <select id="role">
-          <option value="student">student</option>
-          <option value="teacher">teacher</option>
-          <option value="admin">admin</option>
-        </select><br><br>
-        <button>login</button>
-        <p id="login error" style="color:red;"></p>
-      </div>
-      <!--new comm -->
-      <!--new com 2-->
-      .<div id="dashboard" style="display:none;">
-  <h2 id="welcomeMsg"></h2>
-  <div class="dashboard">
-    <div class="menu" id="menu"></div>
-    <div class="content" id="content"></div>
+
+<h2 id="welcomeMsg"></h2>
+<div id="timer"></div>
+
+<div class="dashboard">
+  <div class="menu" id="menu"></div>
+  <div class="content">
+    <div id="questionBox"></div>
+
+    <div class="btns">
+      <button id="ultraprevBtn">|&lt;</button>
+      <button id="prevBtn">Back</button>
+      <button id="nextBtn">Next</button>
+      <button id="ultranextBtn">&gt;|</button>
+    </div>
   </div>
 </div>
-       <!--new com 2-->
-      <!-- Question container -->
-      <div id="questionBox"></div>
-      <!-- Navigation buttons -->
-      <div class="btns">
-        <button type="button" id="ultraprevBtn" class="btn ultbtn">|&lt;</button>
-        <button type="button" id="prevBtn" class="btn btn-secondary">Back</button>
-        <button type="button" id="nextBtn" class="btn btn-primary">Next</button>
-        <button type="button" id="ultranextBtn" class="btn ultbtn">&gt;|</button>
-      </div>
-    </form>
 
-    <div id="result" class="result"></div>
-  </div>
+<div id="result"></div>
 
+<script src="js/quiz.js"></script>
 </body>
 </html>
