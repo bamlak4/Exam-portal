@@ -6,13 +6,15 @@
   font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
-body {
-  background: linear-gradient(135deg, #eef2f7, #dce6f2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
+  body {
+    background:var(--body-bg);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
 
 
 .container {
