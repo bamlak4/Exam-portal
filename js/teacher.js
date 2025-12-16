@@ -1,6 +1,4 @@
-// teacher-script.js - JavaScript for teacher dashboard
 
-// Teacher data storage
 let teacherQuizzes = JSON.parse(localStorage.getItem('teacherQuizzes')) || [];
 let teacherStudents = JSON.parse(localStorage.getItem('teacherStudents')) || [];
 let teacherResults = JSON.parse(localStorage.getItem('teacherResults')) || [];
@@ -12,19 +10,16 @@ let teacherSettings = JSON.parse(localStorage.getItem('teacherSettings')) || {
     showResults: true
 };
 
-// Display teacher name
 window.onload = function() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const userRole = localStorage.getItem('userRole');
     
-    // Check if user is teacher and logged in
     if (!isLoggedIn || isLoggedIn !== 'true' || userRole !== 'teacher') {
         alert("Access denied! Teacher login required.");
         window.location.href = "login.html";
         return;
     }
     
-    // Display teacher name
     const userData = localStorage.getItem('userData');
     if (userData) {
         try {
@@ -35,36 +30,36 @@ window.onload = function() {
         }
     }
     
-    // Load default data if empty
+   
     if (teacherStudents.length === 0) {
         teacherStudents = [
-            { id: 1, name: "John Doe", email: "john@student.com" },
-            { id: 2, name: "Sarah Smith", email: "sarah@student.com" },
-            { id: 3, name: "Mike Johnson", email: "mike@student.com" }
+            { id: 1, name: "Aneni kidanu", email: "stu1@gmail.com" },
+            { id: 2, name: "Bamlak chernet", email: "stu2@gmail.com" },
+            { id: 3, name: "Azeb yirga", email: "stu3@gmail.com" }
         ];
         localStorage.setItem('teacherStudents', JSON.stringify(teacherStudents));
     }
     
     if (teacherResults.length === 0) {
         teacherResults = [
-            { studentName: "John Doe", quizTitle: "Math Quiz", score: "85%", date: "2025-01-15", status: "Passed" },
-            { studentName: "Sarah Smith", quizTitle: "Math Quiz", score: "92%", date: "2025-01-15", status: "Passed" },
-            { studentName: "Mike Johnson", quizTitle: "Math Quiz", score: "45%", date: "2025-01-15", status: "Failed" }
+            { studentName: "aneni kidanu", quizTitle: "Math Quiz", score: "85%", date: "2025-01-15", status: "Passed" },
+            { studentName: "Bamlak chernet", quizTitle: "Math Quiz", score: "92%", date: "2025-01-15", status: "Passed" },
+            { studentName: "Azeb yirga", quizTitle: "Math Quiz", score: "45%", date: "2025-01-15", status: "Failed" }
         ];
         localStorage.setItem('teacherResults', JSON.stringify(teacherResults));
     }
     
-    // Load settings
+   
     loadSettings();
 };
 
-// Logout function
+
 function logout() {
     localStorage.clear();
     window.location.href = "login.html";
 }
 
-// Modal functions
+
 function showModal(modalId) {
     document.getElementById(modalId).style.display = 'flex';
 }
@@ -73,14 +68,14 @@ function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
 }
 
-// ============ CREATE QUIZ FUNCTIONALITY ============
+
 let questionCounter = 0;
 
 function showCreateQuiz() {
     showModal('quizModal');
     document.getElementById('questionsContainer').innerHTML = '';
     questionCounter = 0;
-    addQuestion(); // Add first question by default
+    addQuestion(); 
 }
 
 function addQuestion() {
@@ -110,7 +105,7 @@ function removeQuestion(questionId) {
     const questionElement = document.getElementById(`question${questionId}`);
     if (questionElement) {
         questionElement.remove();
-        // Renumber remaining questions
+        
         const questions = document.querySelectorAll('.quiz-question');
         questions.forEach((q, index) => {
             q.querySelector('h4').textContent = `Question ${index + 1}`;
@@ -141,7 +136,7 @@ function saveQuiz() {
             questions.push({
                 text: questionText,
                 options: options,
-                answer: options[0] // First option is marked as correct (simplified)
+                answer: options[0] 
             });
         }
     });
@@ -167,17 +162,17 @@ function saveQuiz() {
     alert(`Quiz "${title}" created successfully with ${questions.length} questions!`);
     closeModal('quizModal');
     
-    // Reset form
+  
     document.getElementById('quizTitle').value = '';
     document.getElementById('quizDescription').value = '';
     document.getElementById('quizTime').value = '10';
 }
 
-// ============ VIEW RESULTS FUNCTIONALITY ============
+
 function showResults() {
     showModal('resultsModal');
     
-    // Populate results table
+    
     const resultsTable = document.getElementById('resultsTable');
     resultsTable.innerHTML = '';
     
@@ -193,7 +188,7 @@ function showResults() {
         resultsTable.appendChild(row);
     });
     
-    // Calculate statistics
+    
     const totalStudents = teacherStudents.length;
     const totalQuizzes = teacherQuizzes.length;
     const passedStudents = teacherResults.filter(r => r.status === 'Passed').length;
@@ -209,7 +204,7 @@ function showResults() {
     `;
 }
 
-// ============ MANAGE STUDENTS FUNCTIONALITY ============
+
 function showStudents() {
     showModal('studentsModal');
     updateStudentList();
@@ -272,7 +267,7 @@ function removeStudent(studentId) {
     }
 }
 
-// ============ SETTINGS FUNCTIONALITY ============
+
 function showSettings() {
     showModal('settingsModal');
     document.getElementById('defaultTime').value = teacherSettings.defaultTime;
