@@ -7,7 +7,7 @@
 }
 
   body {
-    background:var(--body-bg);
+    background:#ffffff(--body-bg);
     margin: 0;
     padding: 0;
     display: flex;
