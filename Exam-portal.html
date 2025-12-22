@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | Exam Portal</title>
   <link rel="stylesheet" href="css/styleExam.css">
-  <div id="timer">Time: 10:00</div>
 </head>
 <body>
 
+<header>
+    <button onclick="logout()"> Logout</button>
+    <div id="timer">Time: 10:00</div>
+  </header>
 <h2 id="welcomeMsg"></h2>
-<div id="timer"></div>
 
-<div class="dashboard">
   <div class="menu" id="menu"></div>
-  <div class="content">
+  <div class="container">
     <div id="questionBox"></div>
 
     <div class="btns">
-      <button id="ultraprevBtn">|&lt;</button>
-      <button id="prevBtn">Back</button>
-      <button id="nextBtn">Next</button>
-      <button id="ultranextBtn">&gt;|</button>
+      <button class="btn ultbtn id="ultraprevBtn">|&lt;</button>
+      <button class="btn" id="prevBtn">Previous</button>
+      <button class="btn" id="nextBtn">Next</button>
+      <button class="btn" id="ultranextBtn">&gt;|</button>
     </div>
   </div>
 </div>
 
 <div id="result"></div>
-
-<script src="js/quiz.js"></script>
+<script src="js/Questions.js" defer></script>
+<script src="js/timer.js" defer></script>
 </body>
 </html>
