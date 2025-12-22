@@ -236,16 +236,72 @@ let currentQuestion = 0;
     });
 
     function gradeQuiz() {
-      let score = 0;
-      questions.forEach((q, i) => {
-        if (userAnswers[i] === q.answer) {
-          score++;
-        }
-      });
-      questionBox.style.display = "none";
-      document.querySelector(".btns").style.display = "none";
-      resultBox.textContent = You scored ${score} out of ${questions.length};
-    }
+  let score = 0;
+  let reviewHTML = "";
 
-    // Load first question
+  questions.forEach((q, i) => {
+    const isCorrect = userAnswers[i] === q.answer;
+    if (isCorrect) score++;
+
+    reviewHTML += `
+      <div class="review-item">
+        <p><strong>Q${i + 1}:</strong> ${q.text}</p>
+        <p>Your answer: ${userAnswers[i] || "Not answered"}</p>
+        <p>Correct answer: ${q.answer}</p>
+        <p>${isCorrect ? " Correct" : " Incorrect"}</p>
+      </div>
+    `;
+  });
+
+  const percentage = Math.round((score / questions.length) * 100);
+  const grade =
+    percentage >= 90 ? "A" :
+    percentage >= 80 ? "B" :
+    percentage >= 70 ? "C" :
+    percentage >= 60 ? "D" : "F";
+
+  questionBox.innerHTML = `
+    <div class="result-summary">
+      <h2>🎉 Quiz Completed!</h2>
+      <h3>Score: ${score}/${questions.length}</h3>
+      <h3>Percentage: ${percentage}%</h3>
+      <h3>Grade: ${grade}</h3>
+      <h3>Status: ${percentage >= 60 ? " Passed" : " Failed"}</h3>
+      <button class="btn" onclick="location.reload()" style="margin-top:20px;">
+        Restart Quiz
+      </button>
+    </div>
+    <hr>
+    <div class="review-section">
+      <h3>Review Your Answers:</h3>
+      ${reviewHTML}
+    </div>
+  `;
+
+  document.querySelector(".btns").style.display = "none";
+  const time = document.getElementById("timer");
+  if (time) time.style.display = "none";
+}
+
+  window.logout = function() {
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('userData');
+        localStorage.removeItem('isLoggedIn');
+        window.location.href = 'login-signup.html';
+    };
+
+    window.onload = function() {
+  const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+  const welcomeMsg = document.getElementById('welcomeMsg');
+  
+  if (welcomeMsg && userData.name) {
+    welcomeMsg.textContent = `Welcome, ${userData.name}!`;
+  }
+  
+  loadQuestion(currentQuestion);
+};
+
     loadQuestion(currentQuestion);
+  }
+  
